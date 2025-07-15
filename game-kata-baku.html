@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Kata Baku dan Tidak Baku</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #fffaf0;
+      text-align: center;
+      padding: 40px;
+    }
+    .card {
+      background: #e0f7fa;
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+      margin: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .baku {
+      background-color: #4caf50;
+      color: white;
+    }
+    .tidak-baku {
+      background-color: #f44336;
+      color: white;
+    }
+    .result {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Game: Kata Baku atau Tidak Baku?</h1>
+  <div class="card">
+    <h2 id="kata"></h2>
+    <button class="baku" onclick="jawab(true)">Baku</button>
+    <button class="tidak-baku" onclick="jawab(false)">Tidak Baku</button>
+    <div class="result" id="hasil"></div>
+  </div>
+
+  <script>
+    const daftarKata = [
+      { kata: "aktifitas", baku: false },
+      { kata: "aktivitas", baku: true },
+      { kata: "apotek", baku: true },
+      { kata: "apotik", baku: false },
+      { kata: "analisa", baku: false },
+      { kata: "analisis", baku: true },
+      { kata: "resiko", baku: false },
+      { kata: "risiko", baku: true },
+      { kata: "ijin", baku: false },
+      { kata: "izin", baku: true }
+    ];
+
+    let skor = 0;
+    let total = 0;
+    let index = 0;
+
+    function acakKata() {
+      index = Math.floor(Math.random() * daftarKata.length);
+      document.getElementById("kata").innerText = daftarKata[index].kata;
+      document.getElementById("hasil").innerText = "";
+    }
+
+    function jawab(pilihan) {
+      total++;
+      const benar = daftarKata[index].baku === pilihan;
+      if (benar) skor++;
+      document.getElementById("hasil").innerText = benar ? "✅ Benar!" : "❌ Salah!";
+      setTimeout(acakKata, 1000);
+    }
+
+    acakKata();
+  </script>
+</body>
+</html>

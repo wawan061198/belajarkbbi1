@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pencarian KBBI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      padding: 50px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pencarian Kata di KBBI</h1>
+  <p>Masukkan kata untuk mencari definisinya di KBBI:</p>
+  <form id="kbbiForm" target="_blank">
+    <input type="text" id="kata" placeholder="Ketik kata..." required>
+    <button type="submit">Cari di KBBI</button>
+  </form>
+
+  <script>
+    document.getElementById('kbbiForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const kata = document.getElementById('kata').value.trim();
+      if (kata) {
+        const url = `https://kbbi.kemdikbud.go.id/entri/${encodeURIComponent(kata)}`;
+        window.open(url, '_blank');
+      }
+    });
+  </script>
+</body>
+</html>
